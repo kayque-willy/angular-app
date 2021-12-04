@@ -1,0 +1,33 @@
+$ git init
+
+//------------------------------------------------------------------------------------------
+
+//Repositório do código fonte
+$ git remote add origin https://github.com/kayque-willy/neiru_surveys_app-develop.git
+
+//Hospedagem de interface da conta pessoal
+$ git remote add origin https://github.com/kayque-willy/kayque-willy.github.io.git
+
+//Hospedagem de interface da conta final
+//     Para fazer o upload nos opina-ai.github.io é necessário remover as credenciais que estão salvas
+//     Gerenciador de credenciais -> credenciais do windows -> credenciais genéricas -> *apagar o github*
+//     Quando for fazer o commit para o usuário opina-ai, vai pedir o login e senha. 
+
+//CASE 1 - kayque.willy@gmail.com
+$ git remote add origin https://github.com/opina-ai-game/opina-ai-game.github.io.git
+
+//CASE 2 - kayqueoli@gmail.com
+$ git remote add origin https://github.com/opina-ai/opina-ai.github.io.git
+
+//CASE 3 - kayquewillyoliveira@gmail.com
+$ git remote add origin https://github.com/opina-ai-unifei/opina-ai-unifei.github.io.git
+
+$ git pull origin master
+
+//------------------------------------------------------------------------------------------
+
+$ git add .
+
+$ git commit -m "first commit"
+
+$ git push -u origin master

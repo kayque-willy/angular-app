@@ -1,0 +1,26 @@
+<div class="container">
+  <h1 class="mat-display-3 page-title">{{ pageTitle }}</h1>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate class="form-container">
+    <mat-form-field>
+      <mat-label>Título</mat-label>
+      <input type="text" matInput [formControl]="title" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Descrição</mat-label>
+      <input type="text" matInput [formControl]="description" />
+    </mat-form-field>
+
+    <mat-slide-toggle color="primary" [formControl]="done">
+      {{ done.value ? 'Tarefa feita': 'Tarefa não feita' }}
+    </mat-slide-toggle>
+
+    <div class="form-button-container">
+      <button type="submit" mat-raised-button color="primary">Salvar</button>
+      <button type="submit" mat-stroked-button color="primary" routerLink="/">
+        Voltar
+      </button>
+    </div>
+  </form>
+</div>
