@@ -6,7 +6,9 @@
 
 > $ ng new nome-app //--------------// Criação de um novo projeto
 
-> $ ng g component pages/name-page --module=app //--------------// Cria uma nova pagina no projeto
+> $ ng g component pages/name-page --module=app //--------------// Cria um novo componente, que no caso é uma nova pagina no projeto
+
+> $ ng g module modules/name-module //--------------// Cria um novo modulo, o modulo serve pra dividir a aplicação
 
 > $ ng serve -o //--------------// Executa o projeto no node.js local
 

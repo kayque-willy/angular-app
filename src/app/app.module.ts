@@ -1,30 +1,27 @@
+import { TaskModule } from './modules/task.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AngularMaterialModule } from './angular-material/angular-material.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { AngularMaterialModule } from './modules/angular-material.module';
 import { HttpClientModule } from '@angular/common/http';
-import { TaskListPageComponent } from './pages/tasks/task-list-page/task-list-page.component';
-import { TaskFormPageComponent } from './pages/tasks/task-form-page/task-form-page.component';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 
-//O @ é um decorator que adiciona informações de Meta Data para a classe
+//O decorativo @ é usado para adicionar informações de MetaData na classe
 @NgModule({
   declarations: [
-    AppComponent,
-    TaskListPageComponent,
-    TaskFormPageComponent
+    AppComponent
   ],
   imports: [
+    //Modulo das tasks, no qual estão encapsulados os componentes
+    TaskModule,
+    //Modulo do angular material para criação da tabela
+    AngularMaterialModule,
+    //Demais modulos principais
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    AngularMaterialModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    MatSnackBarModule
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
