@@ -1,7 +1,7 @@
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TaskService } from './../../../services/tasks/task.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Task } from 'src/app/models/itask';
 
@@ -17,17 +17,31 @@ export class TaskFormPageComponent implements OnInit {
 
   // configuração do formulário
   form = this.formBuild.group({
-    title: [''],
-    description: [''],
+    title: [
+      'Tarefa',
+      //Validação do forumulário
+      Validators.compose([
+        Validators.maxLength(15),
+        Validators.required
+      ])
+    ],
+    description: [
+      'Descrição',
+      //Validação do forumulário
+      Validators.compose([
+        Validators.maxLength(20),
+        Validators.required
+      ])
+    ],
     done: [false],
   });
 
   constructor(
     private formBuild: FormBuilder,
     private activatedRouter: ActivatedRoute,
-    private taskService : TaskService,
+    private taskService: TaskService,
     private router: Router
-  ) {}
+  ) { }
 
   async ngOnInit(): Promise<void> {
     const paramId = this.activatedRouter.snapshot.paramMap.get('id');

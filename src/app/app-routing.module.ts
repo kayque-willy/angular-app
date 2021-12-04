@@ -7,16 +7,16 @@ import { TaskListPageComponent } from './pages/tasks/task-list-page/task-list-pa
 //Path é o caminho a ser acessdo no atributo routerLink nas páginas, isso leva a execução do componente
 const routes: Routes = [
   {
+    path: '', //Aqui é definido o caminho do root da aplicação
+    component: TaskListPageComponent, //O caminho definido na rota leva a execuçãod do componente
+  },
+  {
     path: 'new',
     component: TaskFormPageComponent,
   },
   {
     path: 'edit/:id',
     component: TaskFormPageComponent,
-  },
-  {
-    path: '',
-    component: TaskListPageComponent,
   },
 ];
 

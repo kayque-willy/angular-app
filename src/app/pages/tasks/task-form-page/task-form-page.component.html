@@ -5,11 +5,14 @@
     <mat-form-field>
       <mat-label>Título</mat-label>
       <input type="text" matInput [formControl]="title" />
+      <!-- O ngIfo form.pristine indica se o formulario foi alterado -->
+      <small *ngIf="form.controls['title'].invalid && !form.pristine">Esse campo deve conter no máximo 15 caracteres</small>
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Descrição</mat-label>
       <input type="text" matInput [formControl]="description" />
+      <small *ngIf="form.controls['description'].invalid && !form.pristine">Esse campo deve conter no máximo 20 caracteres</small>
     </mat-form-field>
 
     <mat-slide-toggle color="primary" [formControl]="done">
@@ -17,7 +20,7 @@
     </mat-slide-toggle>
 
     <div class="form-button-container">
-      <button type="submit" mat-raised-button color="primary">Salvar</button>
+      <button type="submit" mat-raised-button color="primary" [disabled]="form.invalid">Salvar</button>
       <button type="submit" mat-stroked-button color="primary" routerLink="/">
         Voltar
       </button>

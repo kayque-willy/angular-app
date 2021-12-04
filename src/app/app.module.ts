@@ -10,6 +10,7 @@ import { TaskListPageComponent } from './pages/tasks/task-list-page/task-list-pa
 import { TaskFormPageComponent } from './pages/tasks/task-form-page/task-form-page.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
+//O @ é um decorator que adiciona informações de Meta Data para a classe
 @NgModule({
   declarations: [
     AppComponent,

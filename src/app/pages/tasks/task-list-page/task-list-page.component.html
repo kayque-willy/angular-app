@@ -1,6 +1,5 @@
-
 <div class="container">
-  <h1 class="mat-display-3 page-title">Tarefas</h1>
+  <h1 class="mat-display-3 page-title">{{storageInfo}}</h1>
 
   <div class="table-container mat-elevation-z8">
     <table mat-table [dataSource]="tasks" class="mat-elevation-z8">
@@ -30,6 +29,15 @@
         </td>
       </ng-container>
 
+      <!--
+        Os bidings no angular são feitos com as sintaxes e servem para referenciar metodos e atributos entre
+        a pagina e o coomponente
+        {{}} => Referencia direta
+        () => HTML -> TS
+        [] => HTML <- TS
+        [()] => HTML <-> TS
+      -->
+
       <!-- configurando a coluna de ações -->
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef></th>
@@ -39,11 +47,7 @@
             <mat-icon>delete</mat-icon>
           </button>
           <!-- link para ir para tela de edição de tarefa -->
-          <a
-            mat-icon-button
-            color="primary"
-            [routerLink]="['edit', element.id]"
-          >
+          <a mat-icon-button color="primary" [routerLink]="['edit', element.id]">
             <mat-icon>edit</mat-icon>
           </a>
         </td>

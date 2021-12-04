@@ -16,13 +16,15 @@ export class TaskListPageComponent implements OnInit {
 
   tasks: Task[] = [];
   displayedColumns = ['id', 'title', 'description', 'done', 'action'];
+  storageInfo: any = null;
 
   constructor(
-    private taskService : TaskService
-  ) {}
+    private taskService: TaskService
+  ) { }
 
   async ngOnInit(): Promise<void> {
     await this.getAllTasks();
+    this.loadStorage();
   }
 
   async getAllTasks(): Promise<void> {
@@ -43,5 +45,19 @@ export class TaskListPageComponent implements OnInit {
     // de ser excluída não apareça
     // com isso não preciso recarregar a tela novamente
     this.table?.renderRows();
+  }
+
+  // Exemplo de armazenamento local
+  setStorage() {
+    this.storageInfo = 'Tarefas';
+    localStorage.setItem('title', this.storageInfo);
+  }
+
+  // Exemplo de leitura do armazenamento local
+  loadStorage() {
+    this.storageInfo = localStorage.getItem('title');
+    if (!this.storageInfo) {
+      this.setStorage();
+    }
   }
 }
