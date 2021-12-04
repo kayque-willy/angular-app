@@ -10,6 +10,8 @@
 
 > $ ng g module modules/name-module //--------------// Cria um novo modulo, o modulo serve pra dividir a aplicação
 
+> $ ng g service services/name-service //--------------// Cria um novo serviço (@Injectable), o serviço é utilizado para fazer injeções para consumo de API
+
 > $ ng serve -o //--------------// Executa o projeto no node.js local
 
 ---------------------------------------------------------------------------------------------------------
