@@ -12,6 +12,8 @@
 
 > $ ng g service services/name-service //--------------// Criação um novo serviço (@Injectable), o serviço é utilizado para fazer injeções para consumo de API
 
+> $ ng g directive directives/name-directive //--------------// Criação uma diretiva  (@Directive), a diretiva é utilizada para criar parametros de atributo no template
+
 > $ ng serve -o //--------------// Executa o projeto no node.js local, o parametro -o abre o navegador automaticament
 
 ---------------------------------------------------------------------------------------------------------

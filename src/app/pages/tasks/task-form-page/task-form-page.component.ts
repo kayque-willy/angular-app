@@ -43,6 +43,7 @@ export class TaskFormPageComponent implements OnInit {
   ) { }
 
   async ngOnInit(): Promise<void> {
+    // Recuperando o parametro enviado
     const paramId = this.activatedRouter.snapshot.paramMap.get('id');
     if (paramId) {
       this.taskId = paramId;

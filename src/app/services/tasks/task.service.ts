@@ -10,8 +10,8 @@ import { Task } from "../../models/itask";
 export class TaskService {
   constructor(
     private repository: TaskRepository,
-    private snackBar : MatSnackBar
-    ) {}
+    private snackBar: MatSnackBar
+  ) { }
 
   async createTask(task: Task): Promise<Task | void> {
     try {

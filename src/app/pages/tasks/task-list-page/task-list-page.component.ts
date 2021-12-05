@@ -1,8 +1,7 @@
-import { Component, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
 import { Task } from 'src/app/models/itask';
 import { TaskService } from 'src/app/services/tasks/task.service';
-import { EventEmitter } from 'stream';
 
 @Component({
   selector: 'app-task-list-page',
@@ -27,10 +26,16 @@ export class TaskListPageComponent implements OnInit {
   displayedColumns = ['id', 'title', 'description', 'done', 'action'];
   storageInfo: any = null;
   aba: string = 'tarefas';
+  date = new Date();
 
   constructor(
-    private taskService: TaskService
-  ) { }
+    private taskService: TaskService,
+    // Exemplo de instanciação dos elementos do DOM pelo ElementRef
+    // Usar somente em ultimo caso porque é tem vulneralibidade de segurança
+    private elementRef : ElementRef
+  ) {
+    console.log(this.elementRef);
+   }
 
   // Os métodos do evento do ciclo de vida do componente são:
   // ngOnChanges = Antes do ngOnInit e quando uma proprety biding é atualizada
