@@ -6,13 +6,13 @@
 
 > $ ng new nome-app //--------------// Criação de um novo projeto
 
-> $ ng g component pages/name-page --module=app //--------------// Cria um novo componente, que no caso é uma nova pagina no projeto
+> $ ng g component pages/name-page --module=app //--------------// Criação um novo componente (@Component), que no caso é uma nova pagina no projeto
 
-> $ ng g module modules/name-module //--------------// Cria um novo modulo, o modulo serve pra dividir a aplicação
+> $ ng g module modules/name-module //--------------// Criação um novo modulo (@NgModule), o modulo serve pra dividir a aplicação
 
-> $ ng g service services/name-service //--------------// Cria um novo serviço (@Injectable), o serviço é utilizado para fazer injeções para consumo de API
+> $ ng g service services/name-service //--------------// Criação um novo serviço (@Injectable), o serviço é utilizado para fazer injeções para consumo de API
 
-> $ ng serve -o //--------------// Executa o projeto no node.js local
+> $ ng serve -o //--------------// Executa o projeto no node.js local, o parametro -o abre o navegador automaticament
 
 ---------------------------------------------------------------------------------------------------------
 
@@ -23,5 +23,3 @@
 ---------------------------------------------------------------------------------------------------------
 
 > $ ng add @angular/material //--------------// Adiciona o Angular material, que é um conjunto de componentes e styles
-
-

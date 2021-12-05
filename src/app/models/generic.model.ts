@@ -1,3 +1,4 @@
 export interface GenericModel {
-  id?: string; //A anotação ? indica que o atributo não é obrigatório
+  //O operador ? faz a verificação automatica se o atributo é nulo
+  id?: string; //A anotação ? também indica que o atributo não é obrigatório
 }
