@@ -4,9 +4,7 @@ import { TaskRepository } from "src/app/repository/task.repository";
 import { Task } from "../../models/itask";
 
 //O decorador @Injectable permite fornecer uma instancia da classe
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class TaskService {
   constructor(
     private repository: TaskRepository,

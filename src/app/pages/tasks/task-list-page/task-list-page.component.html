@@ -53,7 +53,8 @@
               <mat-icon>delete</mat-icon>
             </button>
             <!-- link para ir para tela de edição de tarefa -->
-            <a mat-icon-button color="primary" [routerLink]="['edit', element.id]">
+            <!-- Aqui tem o exemplo de passagem de parametro pelo routerLink e queryParams -->
+            <a mat-icon-button color="primary" [routerLink]="['edit', element.id]" [queryParams]="{pagina:1}">
               <mat-icon>edit</mat-icon>
             </a>
           </td>

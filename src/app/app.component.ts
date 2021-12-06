@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-//O componente adiciona Meta Dados para o componente
+//O decorativo @Component adiciona Meta Dados para o componente
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

@@ -1,3 +1,5 @@
+import { TaskRepository } from 'src/app/repository/task.repository';
+import { TaskService } from './../services/tasks/task.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TaskListPageComponent } from 'src/app/pages/tasks/task-list-page/task-list-page.component';
@@ -24,6 +26,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
   exports:[
     TaskListPageComponent,
     TaskFormPageComponent
-  ]
+  ],
+  //Os providers são os serviços,
+  //devem ser listados aqui para serem usados pelos componentes desse modulo
+  providers:[TaskRepository,TaskService]
 })
 export class TaskModule { }

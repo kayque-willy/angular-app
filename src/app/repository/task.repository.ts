@@ -1,13 +1,8 @@
 import { GenericRepository } from "./generic.repository";
-import { environment } from "src/environments/environment";
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
 import { Task } from "../models/itask";
 
-@Injectable({
-  providedIn: `root`,
-})
-
+@Injectable()
 // export class TaskRepository extends GenericRepository<Task>{
 export class TaskRepository {
   typeName: string = 'tasks';

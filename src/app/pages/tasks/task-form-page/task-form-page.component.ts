@@ -1,8 +1,9 @@
-import { TaskService } from './../../../services/tasks/task.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Task } from 'src/app/models/itask';
+import { Subscription } from 'rxjs';
+import { TaskService } from 'src/app/services/tasks/task.service';
 
 @Component({
   selector: 'app-task-form-page',
@@ -13,6 +14,8 @@ export class TaskFormPageComponent implements OnInit {
 
   pageTitle = 'Nova tarefa';
   taskId: string | undefined = undefined;
+  paramSubscribe? : Subscription;
+  page? : string;
 
   // configuração do formulário
   form = this.formBuild.group({
@@ -45,10 +48,24 @@ export class TaskFormPageComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     // Recuperando o parametro enviado
     const paramId = this.activatedRouter.snapshot.paramMap.get('id');
+    const pageNum = this.activatedRouter.snapshot.queryParamMap.get('pagina');
+    // Inscrição para ouvir qualquer evento de modificação do parametro
+    // Dessa forma, caso exista modificação, o valor é atualizado automaticamente
+    this.paramSubscribe = this.activatedRouter.params.subscribe((params: any) => {
+      this.taskId = params['id'];
+    });
+    if(pageNum){
+      this.page = pageNum;
+    }
     if (paramId) {
       this.taskId = paramId;
       await this.loadTask();
     }
+  }
+
+  ngOnDestroy() {
+    //Faz a desinscrição
+    this.paramSubscribe?.unsubscribe();
   }
 
   async loadTask(): Promise<void> {

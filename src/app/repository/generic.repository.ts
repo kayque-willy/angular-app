@@ -4,6 +4,8 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 
 @Injectable({
+  //O atributo providedIn define onde o serviço pode ser utilizado na aplicação.
+  //Caso não seja definido, é necessário adiconar os serviços no campo Providers dos módulos
   providedIn: `root`,
 })
 
