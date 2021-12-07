@@ -73,6 +73,7 @@ export class TaskFormPageComponent implements OnInit {
     if (response) {
       this.pageTitle = 'Editando tarefa';
       // atualizando o formulário com os valores retornados pela api
+      // O patchValue altera os atributos sem resetar o formulario
       this.form.patchValue({
         title: response.title,
         description: response.description,
