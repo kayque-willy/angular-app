@@ -59,12 +59,10 @@ export class TaskFormPageComponent implements OnInit {
       .subscribe((params: any) => {
         this.taskId = params['id'];
       });
-    if (pageNum) {
+    if (pageNum)
       this.page = pageNum;
-    }
-    if (paramId) {
+    if (paramId)
       await this.loadTask();
-    }
   }
 
   ngOnDestroy() {
@@ -87,9 +85,8 @@ export class TaskFormPageComponent implements OnInit {
             });
           }
         );
-      } else {
-        throw new Error('O identificador da tarefa não é valido.');
-      }
+      } else
+          throw new Error('O identificador da tarefa não é valido.');
     } catch (error) {
       this.snackBar.open('Erro ao buscar uma tarefa.', 'x');
     }
@@ -101,19 +98,21 @@ export class TaskFormPageComponent implements OnInit {
         ...this.form.value, // pegando todos os valores do formulário
         id: this.taskId // atualizando o id caso exista
       };
-      this.taskService.saveTask(taskToSave).subscribe(data => this.taskId = data.id);
+      this.taskService.saveTask(taskToSave)
+        .subscribe(
+          (data) => {
+            this.taskId = data.id;
+          });
       this.navTaskListPage();
-      if (this.taskId) {
+      if (this.taskId)
         this.snackBar.open('Tarefa criada com sucesso.', 'x');
-      } else {
+      else
         this.snackBar.open('Tarefa alterada com sucesso.', 'x');
-      }
     } catch (error) {
-      if (this.taskId) {
+      if (this.taskId)
         this.snackBar.open('Erro ao alterar a tarefa.', 'x');
-      } else {
+      else
         this.snackBar.open('Erro ao criar a tarefa.', 'x');
-      }
     }
   }
 
