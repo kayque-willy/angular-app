@@ -1,13 +1,13 @@
 <div class="container">
   <!-- Exemplo de pipe com a formatação do título -->
   <h1 class="mat-display-3 page-title">{{storageInfo | uppercase}}</h1>
-    <nav class="nav-bar">
-      <button (click)="aba = 'tarefas'">Tarefas</button>
-      <button (click)="aba = 'sobre'">Sobre</button>
-    </nav>
-    <div class="page-title">
-      <button (click)="getAllTasks()">Carregar Tarefas</button>
-    </div>
+  <nav class="nav-bar">
+    <button (click)="aba = 'tarefas'">Tarefas</button>
+    <button (click)="aba = 'sobre'">Sobre</button>
+  </nav>
+  <div class="page-title">
+    <button (click)="getAllTasks()">Carregar Tarefas</button>
+  </div>
 
   <!-- Os bidings no angular são feitos com as sintaxes e servem para referenciar metodos e atributos entre
       a pagina e o coomponente
@@ -67,6 +67,9 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
       </table>
+      <ng-container class="container" *ngIf="tasks.length === 0">
+        <div class="page-title">Carregando tarefas</div>
+      </ng-container>
     </div>
     <div *ngSwitchCase="'sobre'" class="container">
       Aba de exemplo para demonstração da diretiva ngSwitch
@@ -78,6 +81,6 @@
       <mat-icon>add</mat-icon>
     </a>
   </div>
-   <!-- Exemplo de pipe com a formatação da data -->
-   <footer class="page-title"> {{date | date:'longDate'}}</footer>
+  <!-- Exemplo de pipe com a formatação da data -->
+  <footer class="page-title"> {{date | date:'longDate'}}</footer>
 </div>
