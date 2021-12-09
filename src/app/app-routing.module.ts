@@ -27,6 +27,11 @@ const routes: Routes = [
     component: TaskFormPageComponent,
     canActivate : [AuthGuard]
   },
+  {
+    path: 'upload',
+    loadChildren: ()=>import('./modules/upload-file/upload-file.module').then(m => m.UploadFileModule)
+    //
+  },
 ];
 
 @NgModule({

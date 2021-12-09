@@ -19,7 +19,7 @@ export class GenericRepository<T extends GenericModel>{
   ) { }
 
   //Salva uma entidade
-  save(entity: T) {
+  protected save(entity: T) {
     if (entity['id']) {
       return this.update(entity);
     }
@@ -38,9 +38,8 @@ export class GenericRepository<T extends GenericModel>{
 
   // Atualiza a entidade
   private update(entity: T) {
-    const { id, ...data } = entity;
     return this.httpClient
-      .put<T>(`${this.API}/${this.typeName}/${id}`, data)
+      .put<T>(`${this.API}/${this.typeName}/${entity.id}`, entity)
       .pipe(take(1));
   }
 
