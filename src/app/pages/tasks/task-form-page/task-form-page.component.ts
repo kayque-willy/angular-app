@@ -21,6 +21,7 @@ export class TaskFormPageComponent implements OnInit {
   // configuração do formulário
   form = this.formBuild.group({
     title: [
+      //Texto padrão do input
       'Tarefa',
       //Validação do forumulário
       Validators.compose([
@@ -29,6 +30,7 @@ export class TaskFormPageComponent implements OnInit {
       ])
     ],
     description: [
+      //Texto padrão do input
       'Descrição',
       //Validação do forumulário
       Validators.compose([
@@ -53,14 +55,14 @@ export class TaskFormPageComponent implements OnInit {
     const pageNum = this.activatedRouter.snapshot.queryParamMap.get('pagina');
     // Inscrição para ouvir qualquer evento de modificação do parametro
     // Dessa forma, caso exista modificação, o valor é atualizado automaticamente
-    this.paramSubscribe = this.activatedRouter.params.subscribe((params: any) => {
-      this.taskId = params['id'];
-    });
+    this.paramSubscribe = this.activatedRouter.params
+      .subscribe((params: any) => {
+        this.taskId = params['id'];
+      });
     if (pageNum) {
       this.page = pageNum;
     }
     if (paramId) {
-      this.taskId = paramId;
       await this.loadTask();
     }
   }
@@ -73,9 +75,9 @@ export class TaskFormPageComponent implements OnInit {
   async loadTask(): Promise<void> {
     try {
       if (this.taskId) {
+        this.pageTitle = 'Editando tarefa';
         this.taskService.getTaskById(this.taskId).subscribe(
           data => {
-            this.pageTitle = 'Editando tarefa';
             // atualizando o formulário com os valores retornados pela api
             // O patchValue altera os atributos sem resetar o formulario
             this.form.patchValue({
@@ -97,8 +99,7 @@ export class TaskFormPageComponent implements OnInit {
     try {
       const taskToSave: Task = {
         ...this.form.value, // pegando todos os valores do formulário
-        id: this.taskId, // atualizando o id caso exista
-        typeName: 'tasks', // atualizando o tipo da classe
+        id: this.taskId // atualizando o id caso exista
       };
       this.taskService.saveTask(taskToSave).subscribe(data => this.taskId = data.id);
       this.navTaskListPage();

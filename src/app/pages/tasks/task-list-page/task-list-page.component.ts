@@ -40,7 +40,7 @@ export class TaskListPageComponent implements OnInit {
     // console.log(this.elementRef);
   }
 
-  async ngOnInit() {
+  async ngOnInit(): Promise<void> {
     // Os métodos do evento do ciclo de vida do componente são:
     // ngOnChanges = Antes do ngOnInit e quando uma proprety biding é atualizada
     // ngOnInit = Quando o componente é inicializado
