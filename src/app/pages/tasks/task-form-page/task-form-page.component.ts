@@ -1,9 +1,10 @@
+import { TaskService } from 'src/app/services/tasks/task.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Task } from 'src/app/models/itask';
 import { Subscription } from 'rxjs';
-import { TaskService } from 'src/app/services/tasks/task.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-task-form-page',
@@ -14,8 +15,8 @@ export class TaskFormPageComponent implements OnInit {
 
   pageTitle = 'Nova tarefa';
   taskId: string | undefined = undefined;
-  paramSubscribe? : Subscription;
-  page? : string;
+  paramSubscribe?: Subscription;
+  page?: string;
 
   // configuração do formulário
   form = this.formBuild.group({
@@ -40,8 +41,9 @@ export class TaskFormPageComponent implements OnInit {
 
   constructor(
     private formBuild: FormBuilder,
-    private activatedRouter: ActivatedRoute,
+    private snackBar: MatSnackBar,
     private taskService: TaskService,
+    private activatedRouter: ActivatedRoute,
     private router: Router
   ) { }
 
@@ -54,7 +56,7 @@ export class TaskFormPageComponent implements OnInit {
     this.paramSubscribe = this.activatedRouter.params.subscribe((params: any) => {
       this.taskId = params['id'];
     });
-    if(pageNum){
+    if (pageNum) {
       this.page = pageNum;
     }
     if (paramId) {
@@ -64,41 +66,53 @@ export class TaskFormPageComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    //Faz a desinscrição
+    //Faz a desinscrição dos parametros
     this.paramSubscribe?.unsubscribe();
   }
 
   async loadTask(): Promise<void> {
-    const response = await this.taskService.getTask(this.taskId || '');
-    if (response) {
-      this.pageTitle = 'Editando tarefa';
-      // atualizando o formulário com os valores retornados pela api
-      // O patchValue altera os atributos sem resetar o formulario
-      this.form.patchValue({
-        title: response.title,
-        description: response.description,
-        done: response.done,
-      });
+    try {
+      if (this.taskId) {
+        this.taskService.getTaskById(this.taskId).subscribe(
+          data => {
+            this.pageTitle = 'Editando tarefa';
+            // atualizando o formulário com os valores retornados pela api
+            // O patchValue altera os atributos sem resetar o formulario
+            this.form.patchValue({
+              title: data.title,
+              description: data.description,
+              done: data.done,
+            });
+          }
+        );
+      } else {
+        throw new Error('O identificador da tarefa não é valido.');
+      }
+    } catch (error) {
+      this.snackBar.open('Erro ao buscar uma tarefa.', 'x');
     }
   }
 
   async onSubmit(): Promise<void> {
-    const taskToSave: Task = {
-      ...this.form.value, // pegando todos os valores do formulário
-      id: this.taskId, // atualizando o id caso exista
-      typeName: 'tasks', // atualizando o tipo da classe
-    };
-    let response: Task | void;
-
-    if (taskToSave.id) {
-      response = await this.taskService.updateTask(taskToSave);
-    } else {
-      response = await this.taskService.createTask(taskToSave);
-    }
-    this.navTaskListPage();
-
-    if (response) {
-      this.taskId = response.id;
+    try {
+      const taskToSave: Task = {
+        ...this.form.value, // pegando todos os valores do formulário
+        id: this.taskId, // atualizando o id caso exista
+        typeName: 'tasks', // atualizando o tipo da classe
+      };
+      this.taskService.saveTask(taskToSave).subscribe(data => this.taskId = data.id);
+      this.navTaskListPage();
+      if (this.taskId) {
+        this.snackBar.open('Tarefa criada com sucesso.', 'x');
+      } else {
+        this.snackBar.open('Tarefa alterada com sucesso.', 'x');
+      }
+    } catch (error) {
+      if (this.taskId) {
+        this.snackBar.open('Erro ao alterar a tarefa.', 'x');
+      } else {
+        this.snackBar.open('Erro ao criar a tarefa.', 'x');
+      }
     }
   }
 

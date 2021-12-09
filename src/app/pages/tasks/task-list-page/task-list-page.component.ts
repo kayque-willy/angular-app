@@ -1,4 +1,5 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTable } from '@angular/material/table';
 import { Task } from 'src/app/models/itask';
 import { TaskService } from 'src/app/services/tasks/task.service';
@@ -10,32 +11,33 @@ import { TaskService } from 'src/app/services/tasks/task.service';
 })
 export class TaskListPageComponent implements OnInit {
 
-  // O decorador @ViewChild e ViewChildren servem para intanciar componentes html do template no controlador
-  // Recuperando o elemento "<table></table>" da tela
-  // Porem aqui o componente de tabela é do angular material, com isso eu uso o tipo MatTable
-  @ViewChild(MatTable) table: MatTable<Task> | undefined;
-
-  //O decorador @Input é um decorador para adicionar propriedades nas tags do  template
-  @Input('inputName') inName : string = 'Exemplo de input';
-
-  // O decorador @Output permite enviar saidas para as propriedades do template
-  // Aqui esta um exemplo de output com emissão de evento
-  @Output('outputName') outName = new EventEmitter();
-
   tasks: Task[] = [];
   displayedColumns = ['id', 'title', 'description', 'done', 'action'];
   storageInfo: any = null;
   aba: string = 'tarefas';
   date = new Date();
 
+  // O decorador @ViewChild e ViewChildren servem para intanciar componentes html do template no controlador
+  // Recuperando o elemento "<table></table>" da tela
+  // Porem aqui o componente de tabela é do angular material, com isso eu uso o tipo MatTable
+  @ViewChild(MatTable) table: MatTable<Task> | undefined;
+
+  //O decorador @Input é um decorador para adicionar propriedades nas tags do  template
+  @Input('inputName') inName: string = 'Exemplo de input';
+
+  // O decorador @Output permite enviar saidas para as propriedades do template
+  // Aqui esta um exemplo de output com emissão de evento
+  @Output('outputName') outName = new EventEmitter();
+
   constructor(
     private taskService: TaskService,
+    private snackBar: MatSnackBar,
     // Exemplo de instanciação dos elementos do DOM pelo ElementRef
     // Usar somente em ultimo caso porque é tem vulneralibidade de segurança
-    private elementRef : ElementRef
+    private elementRef: ElementRef
   ) {
-    console.log(this.elementRef);
-   }
+    // console.log(this.elementRef);
+  }
 
   // Os métodos do evento do ciclo de vida do componente são:
   // ngOnChanges = Antes do ngOnInit e quando uma proprety biding é atualizada
@@ -45,29 +47,43 @@ export class TaskListPageComponent implements OnInit {
   // ngAfterContentChecked = A cada verificação de conteúdo inserido
   // ngAgetViewChecked = A cada verificação de conteúdo ou conteúdo de filhos (herença)
   // ngOnDestroy = Antes do componente ser destruído
-  async ngOnInit(): Promise<void> {
-    await this.getAllTasks();
+  ngOnInit() {
+    this.getAllTasks();
     this.loadStorage();
   }
 
-  async getAllTasks(): Promise<void> {
-    const tasks = await this.taskService.getTasks();
-    if (tasks) {
-      this.tasks = tasks;
-    } else {
-      this.tasks = [];
+  ngAfterContentInit() {
+    this.getAllTasks();
+  }
+
+  getAllTasks() {
+    console.log('executou o getAllTasks');
+    try {
+      //O subscribe é usado pra recuperar o resultado da requisição
+      this.taskService.getAllTasks().subscribe(dados => {
+        this.tasks = dados;
+      });
+      this.table?.renderRows();
+    } catch (error) {
+      this.snackBar.open('Erro ao buscar todas tarefas.', 'x');
     }
   }
 
-  async deleteTask(task: Task): Promise<void> {
+  deleteTask(task: Task) {
     // deletando a tarefa da api
-    await this.taskService.deleteTask(task || '');
-    // removendo a tarefa do array de tarefas
-    this.tasks.splice(this.tasks.indexOf(task), 1);
-    // renderizando novamente as linhas da tabela para a tarefa que acabou
-    // de ser excluída não apareça
-    // com isso não preciso recarregar a tela novamente
-    this.table?.renderRows();
+    try {
+      this.taskService.deleteTask(task).subscribe(() =>
+        this.snackBar.open('Tarefa excluída com sucesso.', 'x')
+      );
+      // removendo a tarefa do array de tarefas
+      this.tasks.splice(this.tasks.indexOf(task), 1);
+      // renderizando novamente as linhas da tabela para a tarefa que acabou
+      // de ser excluída não apareça
+      // com isso não preciso recarregar a tela novamente
+      this.table?.renderRows();
+    } catch (error) {
+      this.snackBar.open('Erro ao excluir a tarefa.', 'x');
+    }
   }
 
   // Exemplo de armazenamento local

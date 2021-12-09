@@ -13,10 +13,10 @@ const routes: Routes = [
     component: TaskListPageComponent, //O caminho definido na rota leva a execução do componente
     canActivate : [AuthGuard]
   },
-  {
-    path: '**', //Aqui é definido o componente para as rotas não econtradas
-    component: NotFoundComponent,
-  },
+  // {
+  //   path: '**', //Aqui é definido o componente para as rotas não econtradas
+  //   component: NotFoundComponent,
+  // },
   {
     path: 'new',
     component: TaskFormPageComponent,
