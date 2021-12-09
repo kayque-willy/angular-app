@@ -3,9 +3,11 @@
   <h1 class="mat-display-3 page-title">{{storageInfo | uppercase}}</h1>
     <nav class="nav-bar">
       <button (click)="aba = 'tarefas'">Tarefas</button>
-      <button (click)="getAllTasks()">Carregar Tarefas</button>
       <button (click)="aba = 'sobre'">Sobre</button>
     </nav>
+    <div class="page-title">
+      <button (click)="getAllTasks()">Carregar Tarefas</button>
+    </div>
 
   <!-- Os bidings no angular são feitos com as sintaxes e servem para referenciar metodos e atributos entre
       a pagina e o coomponente

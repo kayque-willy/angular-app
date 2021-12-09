@@ -32,7 +32,7 @@ export class GenericRepository<T extends GenericModel>{
     return this.httpClient
       .post<T>(`${this.API}/${this.typeName}`, entity)
       //O take no pipe indica quantas requisições serão feitas antes de desinscrever
-      //O take é obrigatório para fazer a desinscrição
+      //O take é obrigatório para fazer a desinscrição e evitar sobrecarga de memória
       .pipe(take(1));
   }
 

@@ -11,11 +11,12 @@ import { TaskService } from 'src/app/services/tasks/task.service';
 })
 export class TaskListPageComponent implements OnInit {
 
-  tasks: Task[] = [];
-  displayedColumns = ['id', 'title', 'description', 'done', 'action'];
-  storageInfo: any = null;
+  // Atributos da pagina
   aba: string = 'tarefas';
+  displayedColumns = ['id', 'title', 'description', 'done', 'action'];
+  tasks: Task[] = [];
   date = new Date();
+  storageInfo: any = null;
 
   // O decorador @ViewChild e ViewChildren servem para intanciar componentes html do template no controlador
   // Recuperando o elemento "<table></table>" da tela
@@ -39,20 +40,22 @@ export class TaskListPageComponent implements OnInit {
     // console.log(this.elementRef);
   }
 
-  // Os métodos do evento do ciclo de vida do componente são:
-  // ngOnChanges = Antes do ngOnInit e quando uma proprety biding é atualizada
-  // ngOnInit = Quando o componente é inicializado
-  // ngDoCheck = A cada ciclo de veificação de mudanças
-  // ngAfterConentInit = Depois de inserir conteúdo externo na View
-  // ngAfterContentChecked = A cada verificação de conteúdo inserido
-  // ngAgetViewChecked = A cada verificação de conteúdo ou conteúdo de filhos (herença)
-  // ngOnDestroy = Antes do componente ser destruído
   ngOnInit() {
+    // Os métodos do evento do ciclo de vida do componente são:
+    // ngOnChanges = Antes do ngOnInit e quando uma proprety biding é atualizada
+    // ngOnInit = Quando o componente é inicializado
+    // ngDoCheck = A cada ciclo de veificação de mudanças
+    // ngAfterConentInit = Depois de inserir conteúdo externo na View
+    // ngAfterContentChecked = A cada verificação de conteúdo inserido
+    // ngAgetViewChecked = A cada verificação de conteúdo ou conteúdo de filhos (herença)
+    // ngOnDestroy = Antes do componente ser destruído
+    console.log('Executou o ngOnInit');
     this.getAllTasks();
     this.loadStorage();
   }
 
   ngAfterContentInit() {
+    console.log('Executou o ngAfterContentInit');
     this.getAllTasks();
   }
 
@@ -77,9 +80,8 @@ export class TaskListPageComponent implements OnInit {
       );
       // removendo a tarefa do array de tarefas
       this.tasks.splice(this.tasks.indexOf(task), 1);
-      // renderizando novamente as linhas da tabela para a tarefa que acabou
-      // de ser excluída não apareça
-      // com isso não preciso recarregar a tela novamente
+      // renderizando novamente as linhas da tabela para a tarefa que acabou de ser excluída não apareça
+      // com isso não é necessário recarregar a tela novamente
       this.table?.renderRows();
     } catch (error) {
       this.snackBar.open('Erro ao excluir a tarefa.', 'x');
