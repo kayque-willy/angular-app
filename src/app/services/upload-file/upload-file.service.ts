@@ -11,7 +11,11 @@ export class UploadFileService {
   upload(files: Set<File>, url: string) {
     const formData = new FormData();
     files.forEach(file => formData.append('files', file, file.name));
-    const request = new HttpRequest('POST', url, formData)
-    return this.httpClient.request(request);
+    // Exemplo da requisição com o HttpRequest
+    // const request = new HttpRequest('POST', url, formData)
+    // return this.httpClient.request(request);
+
+    //Exemplo da requisição com o post
+    return this.httpClient.post(url, formData);
   }
 }
