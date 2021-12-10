@@ -15,7 +15,9 @@ export class UploadFileService {
     // const request = new HttpRequest('POST', url, formData)
     // return this.httpClient.request(request);
 
-    //Exemplo da requisição com o post
+    //Exemplo da requisição com o POST
+    //O formData permite que sejam reportados eventos do progresso somente para upload e download
+    // Outros tipos de requisições não podem ter o progresso reportado
     return this.httpClient.post(url, formData, {
       observe : 'events',
       reportProgress: true

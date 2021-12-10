@@ -5,3 +5,6 @@
 <div>
   <button type="button" (click)="onUpload()" [disabled]="!files">Upload</button>
 </div>
+<div>
+  <label *ngIf="progress>0">Enviando arquivo... ({{progress}}%)</label>
+</div>
