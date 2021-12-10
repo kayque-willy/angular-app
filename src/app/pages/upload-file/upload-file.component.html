@@ -2,3 +2,6 @@
   <input multiple type="file" id="customFile" (change)="onChange($event)">
   <label for="customFile" #customFileLabel>Selecionar arquivo</label>
 </div>
+<div>
+  <button type="button" (click)="onUpload()" [disabled]="!files">Upload</button>
+</div>

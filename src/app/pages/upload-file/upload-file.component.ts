@@ -1,3 +1,5 @@
+import { Subscription } from 'rxjs';
+import { UploadFileService } from '../../services/upload-file/upload-file.service';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
@@ -6,11 +8,14 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
   styleUrls: ['./upload-file.component.scss']
 })
 export class UploadFileComponent implements OnInit {
+  //Set dos arquivos
+  files?: Set<File>;
+  subscription? : Subscription;
 
   //Exemplo de ViewChild referenciado pelo id com a sintaxe #customFileLabel
   @ViewChild('customFileLabel') customFileLabel: any;
 
-  constructor() { }
+  constructor(private uploadFileService: UploadFileService) { }
 
   ngOnInit(): void {
   }
@@ -25,10 +30,24 @@ export class UploadFileComponent implements OnInit {
 
     //Para múltiplos arquivos
     const fileNames = [];
-    for (let i = 0; i < selectedFiles.length; i++)
+    this.files = new Set();
+    for (let i = 0; i < selectedFiles.length; i++) {
       fileNames.push(selectedFiles[i].name);
+      this.files.add(selectedFiles[i]);
+    }
     //O método join faz a concatenção da string
     this.customFileLabel.nativeElement.innerHTML = fileNames.join(', ');
+  }
+
+  onUpload() {
+    if (this.files && this.files.size > 0) {
+      this.subscription = this.uploadFileService.upload(this.files, 'http://localhost:8000/upload')
+        .subscribe(response => console.log('Upload concluído'));
+    }
+  }
+
+  ngOnDestroy() {
+    this.subscription?.unsubscribe();
   }
 
 }
