@@ -14,7 +14,13 @@
 
 > $ ng g directive directives/name-directive //--------------// Criação uma diretiva  (@Directive), a diretiva é utilizada para criar parametros de atributo no template
 
+---------------------------------------------------------------------------------------------------------
+
 > $ ng serve -o //--------------// Executa o projeto no node.js local, o parametro -o abre o navegador automaticament
+
+> $ ng serve --proxy-config proxy.conf.json -o //--------------// Executa o projeto no node.js local com as configurações de proxy. Esse comando fica indexado no arquivo package.json
+
+> $ npm run start //--------------// Iniciar o servidor node.js, utilizado para API e para o projeto
 
 ---------------------------------------------------------------------------------------------------------
 
@@ -27,5 +33,3 @@
 > $ ng add @angular/material //--------------// Adiciona o Angular material, que é um conjunto de componentes e styles
 
 ---------------------------------------------------------------------------------------------------------
-
-> $ npm run start //--------------// Iniciar o servidor node.js

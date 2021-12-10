@@ -1,3 +1,4 @@
+import { environment } from 'src/environments/environment';
 import { Subscription } from 'rxjs';
 import { UploadFileService } from '../../services/upload-file/upload-file.service';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
@@ -41,7 +42,7 @@ export class UploadFileComponent implements OnInit {
 
   onUpload() {
     if (this.files && this.files.size > 0) {
-      this.subscription = this.uploadFileService.upload(this.files, 'http://localhost:8000/upload')
+      this.subscription = this.uploadFileService.upload(this.files, environment.local_api +'/upload')
         .subscribe(response => console.log('Upload concluído'));
     }
   }
