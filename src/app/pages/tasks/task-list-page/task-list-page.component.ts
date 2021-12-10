@@ -49,18 +49,15 @@ export class TaskListPageComponent implements OnInit {
     // ngAfterContentChecked = A cada verificação de conteúdo inserido
     // ngAgetViewChecked = A cada verificação de conteúdo ou conteúdo de filhos (herença)
     // ngOnDestroy = Antes do componente ser destruído
-    console.log('Executou o ngOnInit');
     this.getAllTasks();
     this.loadStorage();
   }
 
   ngAfterContentInit() {
-    console.log('Executou o ngAfterContentInit');
     this.getAllTasks();
   }
 
   async getAllTasks() {
-    console.log('executou o getAllTasks');
     try {
       //O subscribe é usado pra recuperar o resultado da requisição
       this.taskService.getAllTasks().subscribe(dados => {
