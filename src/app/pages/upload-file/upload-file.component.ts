@@ -11,7 +11,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 export class UploadFileComponent implements OnInit {
   //Set dos arquivos
   files?: Set<File>;
-  subscription? : Subscription;
+  subscription?: Subscription;
 
   //Exemplo de ViewChild referenciado pelo id com a sintaxe #customFileLabel
   @ViewChild('customFileLabel') customFileLabel: any;
@@ -42,8 +42,11 @@ export class UploadFileComponent implements OnInit {
 
   onUpload() {
     if (this.files && this.files.size > 0) {
-      this.subscription = this.uploadFileService.upload(this.files, environment.local_api +'/upload')
-        .subscribe(response => console.log('Upload concluído'));
+      this.subscription = this.uploadFileService.upload(this.files, environment.local_api + '/upload')
+        .subscribe(response => {
+          console.log(response);
+          console.log('Upload concluído');
+        });
     }
   }
 

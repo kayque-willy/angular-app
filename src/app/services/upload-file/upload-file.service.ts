@@ -16,6 +16,9 @@ export class UploadFileService {
     // return this.httpClient.request(request);
 
     //Exemplo da requisição com o post
-    return this.httpClient.post(url, formData);
+    return this.httpClient.post(url, formData, {
+      observe : 'events',
+      reportProgress: true
+    });
   }
 }
