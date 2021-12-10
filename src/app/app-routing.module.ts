@@ -30,7 +30,6 @@ const routes: Routes = [
   {
     path: 'upload',
     loadChildren: ()=>import('./modules/upload-file/upload-file.module').then(m => m.UploadFileModule)
-    //
   },
 ];
 
