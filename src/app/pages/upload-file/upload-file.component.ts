@@ -54,19 +54,32 @@ export class UploadFileComponent implements OnInit {
           //Inscrição para acompanhar o progesso de uploado do arquivo
           //Aqui é verifiacdo o tipo de resposta HTTP
           //As comparações do tipo da resposta são feitas de acordo com os tipes pré definidos pelo Angular
-          console.log(response);
           //Caso o evento de resposta seja de UploadProgress, é acrescentado o percentual para ser apresentado no template
           if (response.type === HttpEventType.UploadProgress && response.total) {
             this.progress = Math.round((response.loaded * 100) / response.total);
             console.log('Progresso', this.progress, ' %');
             // Caso o evento de resposta sea de Response, o uploado foi concluído
           } else if (response.type === HttpEventType.Response) {
-            console.log('Upload concluído');
             this.progress = 0;
             this.snackBar.open('Upload do arquivo concluído!', 'x');
           }
         });
     }
+  }
+
+  onDownload() {
+    this.uploadFileService.download(environment.local_api + '/download')
+      .subscribe((response: any) => {
+        console.log(response);
+        const file = new Blob([response],{type: response.type});
+        const blob = window.URL.createObjectURL(file);
+        const link = document.createElement('a');
+        link.href = blob;
+        link.download = 'donwload.pdf';
+        link.click();
+        window.URL.revokeObjectURL(blob);
+        link.remove();
+      });
   }
 
   ngOnDestroy() {

@@ -19,8 +19,14 @@ export class UploadFileService {
     //O formData permite que sejam reportados eventos do progresso somente para upload e download
     // Outros tipos de requisições não podem ter o progresso reportado
     return this.httpClient.post(url, formData, {
-      observe : 'events',
+      observe: 'events',
       reportProgress: true
+    });
+  }
+
+  download(url: string) {
+    return this.httpClient.get(url, {
+      responseType: 'blob' as 'json'
     });
   }
 }
