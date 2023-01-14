@@ -1,10 +1,17 @@
----------------------------------------------------------------------------------------------------------
+
+---------------------------------------------INSTALAÇÃO--------------------------------------------------
 
 > $ npm install -g @angular/cli //--------------// Instalação do ANGULAR
 
----------------------------------------------------------------------------------------------------------
+------------------------------------------CRIAÇÃO PROJETO-------------------------------------------------
 
 > $ ng new nome-app //--------------// Criação de um novo projeto
+
+-------------------------------------INSTALAÇÃO DE DEPENDENCIAS ------------------------------------------
+
+> $ ng add @angular/material //--------------// Adiciona o Angular material, que é um conjunto de componentes e styles
+
+---------------------------------------CRIAÇÃO DE COMPONENTES----------------------------------------------
 
 > $ ng g component pages/name-page --module=app //--------------// Criação um novo componente (@Component), que no caso é uma nova pagina no projeto
 
@@ -14,7 +21,7 @@
 
 > $ ng g directive directives/name-directive //--------------// Criação uma diretiva  (@Directive), a diretiva é utilizada para criar parametros de atributo no template
 
----------------------------------------------------------------------------------------------------------
+-----------------------------------------------EXECUÇÃO----------------------------------------------------
 
 > $ ng serve -o //--------------// Executa o projeto no node.js local, o parametro -o abre o navegador automaticament
 
@@ -22,14 +29,10 @@
 
 > $ npm run start //--------------// Iniciar o servidor node.js, utilizado para API e para o projeto
 
----------------------------------------------------------------------------------------------------------
+--------------------------------------------------BUILD-------------------------------------------------------
 
 > $ ng build nome-app --base-href /nome-app/ //--------------// Gera o código de deploy para desenvolvimento
 
 > $ ng build nome-app -c production --base-href /nome-app/   //--------------// Gera o código de deploy para o servidor de produção
-
----------------------------------------------------------------------------------------------------------
-
-> $ ng add @angular/material //--------------// Adiciona o Angular material, que é um conjunto de componentes e styles
 
 ---------------------------------------------------------------------------------------------------------
