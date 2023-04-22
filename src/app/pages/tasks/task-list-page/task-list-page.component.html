@@ -47,9 +47,20 @@
           </td>
         </ng-container>
 
+        <!-- configurando a coluna tarefa feita -->
+        <ng-container matColumnDef="conclusion">
+          <th mat-header-cell *matHeaderCellDef>Concluir tarefa</th>
+          <td mat-cell *matCellDef="let element">
+            <!-- botão para concluir uma tarefa -->
+            <button *ngIf="element.done !== true" mat-icon-button color="primary" (click)="doTask(element)">
+              <mat-icon>done</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
         <!-- configurando a coluna de ações -->
         <ng-container matColumnDef="action">
-          <th mat-header-cell *matHeaderCellDef></th>
+          <th mat-header-cell *matHeaderCellDef>Ação</th>
           <td mat-cell *matCellDef="let element">
             <!-- botão para excluir uma tarefa -->
             <button mat-icon-button color="warn" (click)="deleteTask(element)">
@@ -82,5 +93,9 @@
     </a>
   </div>
   <!-- Exemplo de pipe com a formatação da data -->
-  <footer class="page-title"> {{date | date:'longDate'}}</footer>
+
+  <footer class="page-title">
+    <div> © {{date | date:'longDate'}} - Author: <a _ngcontent-geq-c9="" href="https://github.com/kayque-willy"
+        class="text-white">Kayque Oliveira</a></div>
+  </footer>
 </div>

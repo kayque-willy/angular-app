@@ -13,7 +13,7 @@ export class TaskListPageComponent implements OnInit {
 
   // Atributos da pagina
   aba: string = 'tarefas';
-  displayedColumns = ['id', 'title', 'description', 'done', 'action'];
+  displayedColumns = ['id', 'title', 'description', 'done', 'conclusion', 'action'];
   tasks: Task[] = [];
   date = new Date();
   storageInfo: any = null;
@@ -82,6 +82,19 @@ export class TaskListPageComponent implements OnInit {
       this.table?.renderRows();
     } catch (error) {
       this.snackBar.open('Erro ao excluir a tarefa.', 'x');
+    }
+  }
+
+  doTask(task: Task) {
+    task.done = true;
+    // deletando a tarefa da api
+    try {
+      this.taskService.saveTask(task).subscribe(() =>
+        this.snackBar.open('Tarefa concluída com sucesso.', 'x')
+      );
+      this.table?.renderRows();
+    } catch (error) {
+      this.snackBar.open('Erro ao concluir a tarefa.', 'x');
     }
   }
 
