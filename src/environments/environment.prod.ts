@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  api: "",
-  local_api: ""
+  api: "https://612eb869d11e5c0017558684.mockapi.io",
+  local_api: "/api"
 };
