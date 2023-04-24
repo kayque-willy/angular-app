@@ -2,13 +2,19 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border-bottom-left-radius: 45px;
+    border-bottom-left-radius: 35%;
+    border-bottom-right-radius: 35%;
     height: 15%;
-    border-bottom-right-radius: 45px;
 }
 
 .header-subtitle {
     margin-top: 10%;
     font-size: 2em;
     font-weight: bold;
+}
+
+.header-title {
+    font: 500 20px/32px Roboto, sans-serif;
+    font-size: 2.8em;
+    margin-bottom: 5%;
 }

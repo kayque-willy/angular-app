@@ -22,7 +22,7 @@ export class TaskFormPageComponent implements OnInit {
   form = this.formBuild.group({
     title: [
       //Texto padrão do input
-      'Tarefa',
+      '',
       //Validação do forumulário
       Validators.compose([
         Validators.maxLength(50),
@@ -31,7 +31,7 @@ export class TaskFormPageComponent implements OnInit {
     ],
     description: [
       //Texto padrão do input
-      'Descrição',
+      '',
       //Validação do forumulário
       Validators.compose([
         Validators.maxLength(200),
