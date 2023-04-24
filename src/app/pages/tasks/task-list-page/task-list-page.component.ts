@@ -13,7 +13,7 @@ export class TaskListPageComponent implements OnInit {
 
   // Atributos da pagina
   aba: string = 'tarefas';
-  displayedColumns = ['id', 'title', 'description', 'done', 'conclusion', 'action'];
+  displayedColumns = ['conclusion', 'title', 'description', 'action'];
   tasks: Task[] = [];
   date = new Date();
   storageInfo: any = null;

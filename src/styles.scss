@@ -1,15 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Roboto, sans-serif; }
 
 .container {
   max-width: 1024px;
   margin: 0 auto;
   padding: 2rem 0;
+  padding-top: 0;
+  text-align: center;
 }
 
-.container .page-title {
+.page-title {
   text-align: center;
 }
 
@@ -20,13 +22,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 nav.nav-bar {
+  margin-top: 4%;
+    margin-bottom: 2%;
   text-align: center;
-  margin-bottom: 3%;
-  padding-bottom: 3%;
-  border-bottom: solid;
   border-bottom-width: 1px;
-}
-
-.mat-typography .mat-display-3 {
-  margin: 0 0 20px;
 }

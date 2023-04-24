@@ -1,6 +1,12 @@
-<mat-toolbar color="primary" >
-  <a mat-button [routerLink]="['/']"><span>Exemplo de projeto Angular</span></a>
-  <a mat-button [routerLink]="['/upload']"><span>Upload</span></a>
+<mat-toolbar class="header" color="primary">
+  <a mat-button [routerLink]="['/']">
+    <h1 class="header-title">Angular App</h1>
+  </a>
+  <a mat-button [routerLink]="['/']">
+    <h2 class="header-subtitle"><mat-icon>assignment</mat-icon> ToDo List</h2>
+  </a>
+  <!-- <a mat-button [routerLink]="['/']"><span>Exemplo de projeto Angular</span></a>
+  <a mat-button [routerLink]="['/upload']"><span>Upload</span></a> -->
   <span class="toobal-spacer"></span>
 </mat-toolbar>
 

@@ -10,3 +10,32 @@ table {
 .mat-column-action {
   width: 80px;
 }
+
+.mat-cell {
+  color: #673ab7;
+}
+
+.container {
+  max-width: 85%;
+}
+
+.button-switch{
+  margin: 1%
+}
+
+th.mat-header-cell {
+   text-align: center; 
+}
+
+ td,
+ th {
+  margin: 0.5%;
+   white-space: normal;
+   word-wrap: break-word;
+   max-width: 200px;
+ }
+
+ .mat-cell {
+   padding-right: 1%;
+   padding-left: 1%;
+ }

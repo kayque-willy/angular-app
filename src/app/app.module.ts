@@ -10,6 +10,9 @@ import { AuthService } from './services/auth-service/auth.service';
 import { AuthGuard } from './guards/auth.guard.service';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { UploadFileModule } from './modules/upload-file/upload-file.module';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatListModule } from '@angular/material/list';
+import { ReactiveFormsModule } from '@angular/forms';
 
 //O decorativo @ é usado para adicionar informações de MetaData na classe
 @NgModule({

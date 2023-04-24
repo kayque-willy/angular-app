@@ -25,7 +25,7 @@ export class TaskFormPageComponent implements OnInit {
       'Tarefa',
       //Validação do forumulário
       Validators.compose([
-        Validators.maxLength(15),
+        Validators.maxLength(50),
         Validators.required
       ])
     ],
@@ -34,7 +34,7 @@ export class TaskFormPageComponent implements OnInit {
       'Descrição',
       //Validação do forumulário
       Validators.compose([
-        Validators.maxLength(20),
+        Validators.maxLength(200),
         Validators.required
       ])
     ],
@@ -86,7 +86,7 @@ export class TaskFormPageComponent implements OnInit {
           }
         );
       } else
-          throw new Error('O identificador da tarefa não é valido.');
+        throw new Error('O identificador da tarefa não é valido.');
     } catch (error) {
       this.snackBar.open('Erro ao buscar uma tarefa.', 'x');
     }
