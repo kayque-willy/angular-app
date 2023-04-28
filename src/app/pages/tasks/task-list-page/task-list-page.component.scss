@@ -53,20 +53,14 @@ th.mat-header-cell {
  }
 
  .done {
-   margin-bottom: 1%;
-   width: 14em;
    display: flex;
    background-color: #673ab724;
-   height: 50px;
    align-items: center;
    justify-content: center;
  }
  
  .not-done {
-   margin-bottom: 1%;
-   width: 14em;
    display: flex;
-   height: 50px;
    align-items: center;
    justify-content: center;
  }
@@ -87,8 +81,10 @@ th.mat-header-cell {
    margin-left: -4%;
  }
 
- .mat-cell {
-   padding-right: 1%;
+ .task-description {
+   justify-content: normal;
+  text-align: justify;
+  margin-right: 5%;
  }
 
  .no-task.primary {

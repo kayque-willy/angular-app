@@ -31,7 +31,9 @@
               <button *ngIf="element.done !== true" mat-icon-button color="primary" (click)="doTask(element)">
                 <mat-icon>check_circle_outline</mat-icon>
               </button>
-              <mat-icon *ngIf="element.done === true">check_circle</mat-icon>
+              <button *ngIf="element.done === true" mat-icon-button color="primary" (click)="unDoTask(element)">
+                <mat-icon>check_circle</mat-icon>
+              </button>
             </div>
           </td>
         </ng-container>
@@ -50,7 +52,7 @@
         <ng-container matColumnDef="description">
           <th mat-header-cell *matHeaderCellDef>Descrição</th>
           <td class="description" mat-cell *matCellDef="let element">
-            <div [ngClass]="element.done === true ? 'done' : 'not-done'">
+            <div [ngClass]="element.done === true ? 'done task-description' : 'not-done task-description'">
               {{element.description }}
             </div>
           </td>
@@ -60,7 +62,7 @@
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef>Ação</th>
           <td mat-cell *matCellDef="let element">
-            <div [ngClass]="element.done === true ? 'done' : 'not-done'">
+            <div [ngClass]="element.done === true ? 'done task-description' : 'not-done task-description'">
               <!-- link para ir para tela de edição de tarefa -->
               <!-- Aqui tem o exemplo de passagem de parametro pelo routerLink e queryParams -->
               <a mat-icon-button color="primary" [routerLink]="['edit', element.id]" [queryParams]="{pagina:1}">

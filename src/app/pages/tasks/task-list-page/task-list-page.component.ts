@@ -87,7 +87,6 @@ export class TaskListPageComponent implements OnInit {
 
   doTask(task: Task) {
     task.done = true;
-    // deletando a tarefa da api
     try {
       this.taskService.saveTask(task).subscribe(() =>
         this.snackBar.open('Tarefa concluída com sucesso.', 'x')
@@ -95,6 +94,18 @@ export class TaskListPageComponent implements OnInit {
       this.table?.renderRows();
     } catch (error) {
       this.snackBar.open('Erro ao concluir a tarefa.', 'x');
+    }
+  }
+
+  unDoTask(task: Task) {
+    task.done = false;
+    try {
+      this.taskService.saveTask(task).subscribe(() =>
+        this.snackBar.open('Tarefa restaurada com sucesso.', 'x')
+      );
+      this.table?.renderRows();
+    } catch (error) {
+      this.snackBar.open('Erro a restaurar a tarefa.', 'x');
     }
   }
 
