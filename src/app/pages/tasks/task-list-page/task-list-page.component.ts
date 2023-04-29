@@ -17,6 +17,7 @@ export class TaskListPageComponent implements OnInit {
   tasks: Task[] = [];
   date = new Date();
   storageInfo: any = null;
+  showLoad: boolean = true;
 
   // O decorador @ViewChild e ViewChildren servem para intanciar componentes html do template no controlador
   // Recuperando o elemento "<table></table>" da tela
@@ -59,9 +60,11 @@ export class TaskListPageComponent implements OnInit {
 
   async getAllTasks() {
     try {
+      this.showLoad = true;
       //O subscribe é usado pra recuperar o resultado da requisição
       this.taskService.getAllTasks().subscribe(dados => {
         this.tasks = dados;
+        this.showLoad = false;
       });
       this.table?.renderRows();
     } catch (error) {

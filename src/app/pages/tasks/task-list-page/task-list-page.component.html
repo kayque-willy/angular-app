@@ -81,7 +81,14 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
       </table>
 
-      <section class="task-empty" *ngIf="tasks.length === 0">
+      <ng-container *ngIf="showLoad" class="container">
+        <div class="container-loading">
+          <img class="img-loading" width="150" alt="Carregando..." src="../../../../assets/load.webp" />
+          <span class="loading">Carregando...</span>
+        </div>
+      </ng-container>
+
+      <section class="task-empty" *ngIf="tasks.length === 0 && !showLoad">
         <h3 class="no-task primary">Sem tarefas</h3>
       </section>
 
@@ -90,11 +97,17 @@
     <ng-container *ngSwitchCase="'sobre'" class="container ">
       <section class="about">
         <h4 class="upper-title">Sobre</h4>
-        <p class="bout-text">
-          Aba de exemplo para demonstração da diretiva ngSwitch.
+        <p class="about-text">
+          Este é um aplicativo web para gerenciamento de tafefas pessoais.
         </p>
-        <p class="bout-text">
-          Este é um aplicativo de tarefas, desenvolvido em Angular com aramzenamento local.
+        <p class="about-text">
+          Desenvolvido com o framework
+          Angular,
+          Local Storage e
+          a Biblioteca Angular Materials.
+        </p>
+        <p class="about-text">
+          Esta é uma aba de exemplo para demonstração de uso da diretiva ngSwitch, utilizada para troca de abas.
         </p>
       </section>
     </ng-container>
