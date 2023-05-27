@@ -21,9 +21,9 @@ const diretorio = "./";
 let conteudo = "";
 
 const linhas = [
-    "Linha 1\n",
-    "Linha 2\n",
-    "Linha 3\n"
+    "Linha 1\r\n",
+    "Linha 2\r\n",
+    "Linha 3\r\n"
 ];
 
 linhas.forEach(linha => {
