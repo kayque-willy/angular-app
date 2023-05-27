@@ -1,4 +1,4 @@
-//Execução no terminal: $> node .\arquivo.js
+//Execução no terminal: $> node .\gerar_arquivo.js
 
 // [Flags]:
 // r   Somente leitura
