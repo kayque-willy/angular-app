@@ -1,0 +1,47 @@
+services:
+  todo-app:
+    build: .
+    container_name: todo-app
+    image: todo-app
+    ports:
+      - 4200:4200
+    expose:
+      - 4200
+    networks:
+      - desenvolvimento
+    volumes:
+      - ./angular:/project
+      - /project/node_modules
+   
+    #build:
+      #context: angular
+      #target: builder
+    #command: npm start
+    #depends_on:
+    #env_file:
+    #restart:
+    #working_dir: /usr/src/app
+
+  postgresql:
+    image: postgres:latest
+    container_name: postgresql
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=1234@Mudar
+    ports:
+      - 5432:5432
+    expose:
+      - 5432
+    networks:
+      - desenvolvimento
+    volumes:
+      - postgresql_data:/var/lib/postgresql/data
+    #restart: always
+
+networks:
+  desenvolvimento:
+    external: true
+
+volumes:
+  angular:
+  postgresql_data:
