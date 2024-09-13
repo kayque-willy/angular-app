@@ -6,10 +6,23 @@ $ docker images
 
 $ docker ps
 
------------------------------------------------CRIAR IMAGEM--------------------------------------------------
+----------------------------------------------CRIAR IMAGEM--------------------------------------------------
 
 $ docker build -t nome-imagem .
+
+----------------------------------------------CRIAR NETWORK--------------------------------------------------
+
+$ docker network create desenvolvimento
+
+----------------------------------------------VERIFICAR NETWORK--------------------------------------------------
+
+$ docker network inspect bridge
 
 ----------------------------------------CRIAR CONTAINER PELA IMAGEM--------------------------------------------------
 
 $ docker run -p 4200:4200 nome-imagem
+$ docker run -d --name nome-container --network nome-rede 4200:4200 nome-imagem
+
+-----------------------------------------CRIAR CONTAINER POSTGRES--------------------------------------------------
+
+$ docker run --name some-postgres --network nome-rede -e POSTGRES_PASSWORD=1234@Mudar -d postgres
